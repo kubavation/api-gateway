@@ -1,0 +1,16 @@
+server:
+  port: 8999
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8777/eureka/
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: company-management-core
+          uri: lb://company-management-core
+          predicates:
+            - Cookie=mycookie,mycookievalue
