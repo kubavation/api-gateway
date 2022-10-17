@@ -6,11 +6,35 @@ eureka:
       defaultZone: http://localhost:8777/eureka/
 spring:
   application:
-    name: api-gateway
+    name: API-GATEWAY
   cloud:
     gateway:
+      discovery:
+        locator:
+          enabled: true
       routes:
         - id: company-management-core
-          uri: lb://company-management-core
+          uri: lb://COMPANY-MANAGEMENT
           predicates:
-            - Cookie=mycookie,mycookievalue
+            - Path=/company-management/**
+          filters:
+            - RewritePath=/company-management/(?<segment>.*), /$\{segment}
+        - id: access-management
+          uri: lb://ACCESS-MANAGEMENT
+          predicates:
+            - Path=/access-management/**
+logging:
+  level:
+    root: TRACE
+    org:
+      springframework:
+        cloud:
+          gateway: TRACE
+management:
+  endpoint:
+    gateway:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: gateway
