@@ -23,6 +23,8 @@ spring:
           uri: lb://ACCESS-MANAGEMENT
           predicates:
             - Path=/access-management/**
+          filters:
+            - RewritePath=/access-management/(?<segment>.*), /$\{segment}
 logging:
   level:
     root: TRACE
