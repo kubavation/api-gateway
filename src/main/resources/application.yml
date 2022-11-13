@@ -3,7 +3,7 @@ server:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8777/eureka/
+      defaultZone: http://eureka:password@localhost:8777/eureka/
 spring:
   application:
     name: API-GATEWAY
@@ -38,6 +38,11 @@ spring:
             - Path=/access-management/**
           filters:
             - RewritePath=/access-management/(?<segment>.*), /$\{segment}
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/am-realm
 logging:
   level:
     root: TRACE
