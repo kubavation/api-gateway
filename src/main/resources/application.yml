@@ -21,6 +21,7 @@ spring:
               - POST
               - PUT
               - DELETE
+              - PATCH
             allowed-headers: "*"
       discovery:
         locator:
