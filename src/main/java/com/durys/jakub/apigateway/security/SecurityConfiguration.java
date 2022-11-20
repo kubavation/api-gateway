@@ -16,7 +16,6 @@ public class SecurityConfiguration {
                 .csrf().disable()
                 .authorizeExchange(exchange ->
                         exchange.pathMatchers("/eureka/**").permitAll()
-                                .pathMatchers("/**").permitAll() //todo
                                 .anyExchange().authenticated())
                 .oauth2ResourceServer(ServerHttpSecurity.OAuth2ResourceServerSpec::jwt)
                 .build();
