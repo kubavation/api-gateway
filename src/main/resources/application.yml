@@ -37,6 +37,12 @@ spring:
             - Path=/access-management/**
           filters:
             - RewritePath=/access-management/(?<segment>.*), /$\{segment}
+        - id: configuration-service
+          uri: lb://CONFIGURATION-SERVICE
+          predicates:
+            - Path=/configuration-service/**
+          filters:
+            - RewritePath=/configuration-service/(?<segment>.*), /$\{segment}
   security:
     oauth2:
       resourceserver:
