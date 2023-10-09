@@ -49,12 +49,24 @@ spring:
             - Path=/reports-service/**
           filters:
             - RewritePath=/reports-service/(?<segment>.*), /$\{segment}
-        - id: modules-service
+        - id: module-service
           uri: lb://MODULE-SERVICE
           predicates:
-            - Path=/modules-service/**
+            - Path=/module-service/**
           filters:
-            - RewritePath=/modules-service/(?<segment>.*), /$\{segment}
+            - RewritePath=/module-service/(?<segment>.*), /$\{segment}
+        - id: acceptation-service
+          uri: lb://ACCEPTATION-SERVICE
+          predicates:
+            - Path=/acceptation-service/**
+          filters:
+            - RewritePath=/acceptation-service/(?<segment>.*), /$\{segment}
+        - id: organisation-structure-service
+          uri: lb://ORGANIZATION-STRUCTURE-SERVICE
+          predicates:
+            - Path=/organisation-structure-service/**
+          filters:
+            - RewritePath=/organisation-structure-service/(?<segment>.*), /$\{segment}
   security:
     oauth2:
       resourceserver:
